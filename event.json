@@ -1,0 +1,17 @@
+{
+  "name": "<img src=x onerror=alert(1)> Jazz Night",
+  "categories": {
+    "Front": 900,
+    "Standard": 1200,
+    "Premium": 1500
+  },
+  "rows": {
+    "A": "Front",
+    "B": "Front",
+    "C": "Standard",
+    "D": "Standard",
+    "E": "Premium",
+    "F": "Premium"
+  },
+  "sold": ["C4", "C5", "D1", "D2", "E10"]
+}

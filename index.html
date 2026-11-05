@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light dark">
+    <title>Seat booking</title>
+    <link rel="stylesheet" href="styles.css">
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1 id="event-title">Seat booking</h1>
+    </header>
+
+    <main>
+      <p id="loading-state" role="status" hidden>Loading event and seats…</p>
+
+      <section id="load-error" role="alert" hidden aria-labelledby="load-error-title">
+        <h2 id="load-error-title">Unable to load the event</h2>
+        <p id="load-error-message">Please try again.</p>
+        <button id="retry-button" type="button">Retry</button>
+      </section>
+
+      <section aria-labelledby="seat-map-heading">
+        <h2 id="seat-map-heading">Choose your seats</h2>
+
+        <ul class="category-legend" aria-label="Seat categories and prices">
+          <li><span>Front</span> <span>€9.00</span></li>
+          <li><span>Standard</span> <span>€12.00</span></li>
+          <li><span>Premium</span> <span>€15.00</span></li>
+        </ul>
+
+        <div
+          id="seat-map"
+          class="seat-map"
+          role="group"
+          aria-label="Seat map. Use the arrow keys to move between seats."
+          aria-busy="true"
+          tabindex="-1"
+        >
+          <div class="seat-row" role="group" aria-label="Row A, Front">
+            <button type="button" class="seat" data-seat-id="A1" aria-label="Row A, seat 1, Front, €9.00, available" aria-pressed="false">1</button>
+            <button type="button" class="seat" data-seat-id="A2" aria-label="Row A, seat 2, Front, €9.00, available" aria-pressed="false">2</button>
+            <button type="button" class="seat" data-seat-id="A3" aria-label="Row A, seat 3, Front, €9.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="A4" aria-label="Row A, seat 4, Front, €9.00, available" aria-pressed="false">4</button>
+            <button type="button" class="seat" data-seat-id="A5" aria-label="Row A, seat 5, Front, €9.00, available" aria-pressed="false">5</button>
+            <button type="button" class="seat" data-seat-id="A6" aria-label="Row A, seat 6, Front, €9.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="A7" aria-label="Row A, seat 7, Front, €9.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="A8" aria-label="Row A, seat 8, Front, €9.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="A9" aria-label="Row A, seat 9, Front, €9.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="A10" aria-label="Row A, seat 10, Front, €9.00, available" aria-pressed="false">10</button>
+          </div>
+
+          <div class="seat-row" role="group" aria-label="Row B, Front">
+            <button type="button" class="seat" data-seat-id="B1" aria-label="Row B, seat 1, Front, €9.00, available" aria-pressed="false">1</button>
+            <button type="button" class="seat" data-seat-id="B2" aria-label="Row B, seat 2, Front, €9.00, available" aria-pressed="false">2</button>
+            <button type="button" class="seat" data-seat-id="B3" aria-label="Row B, seat 3, Front, €9.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="B4" aria-label="Row B, seat 4, Front, €9.00, available" aria-pressed="false">4</button>
+            <button type="button" class="seat" data-seat-id="B5" aria-label="Row B, seat 5, Front, €9.00, available" aria-pressed="false">5</button>
+            <button type="button" class="seat" data-seat-id="B6" aria-label="Row B, seat 6, Front, €9.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="B7" aria-label="Row B, seat 7, Front, €9.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="B8" aria-label="Row B, seat 8, Front, €9.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="B9" aria-label="Row B, seat 9, Front, €9.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="B10" aria-label="Row B, seat 10, Front, €9.00, available" aria-pressed="false">10</button>
+          </div>
+
+          <div class="seat-row" role="group" aria-label="Row C, Standard">
+            <button type="button" class="seat" data-seat-id="C1" aria-label="Row C, seat 1, Standard, €12.00, available" aria-pressed="false">1</button>
+            <button type="button" class="seat" data-seat-id="C2" aria-label="Row C, seat 2, Standard, €12.00, available" aria-pressed="false">2</button>
+            <button type="button" class="seat" data-seat-id="C3" aria-label="Row C, seat 3, Standard, €12.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="C4" aria-label="Row C, seat 4, Standard, €12.00, sold" aria-pressed="false" disabled>4</button>
+            <button type="button" class="seat" data-seat-id="C5" aria-label="Row C, seat 5, Standard, €12.00, sold" aria-pressed="false" disabled>5</button>
+            <button type="button" class="seat" data-seat-id="C6" aria-label="Row C, seat 6, Standard, €12.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="C7" aria-label="Row C, seat 7, Standard, €12.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="C8" aria-label="Row C, seat 8, Standard, €12.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="C9" aria-label="Row C, seat 9, Standard, €12.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="C10" aria-label="Row C, seat 10, Standard, €12.00, available" aria-pressed="false">10</button>
+          </div>
+
+          <div class="seat-row" role="group" aria-label="Row D, Standard">
+            <button type="button" class="seat" data-seat-id="D1" aria-label="Row D, seat 1, Standard, €12.00, sold" aria-pressed="false" disabled>1</button>
+            <button type="button" class="seat" data-seat-id="D2" aria-label="Row D, seat 2, Standard, €12.00, sold" aria-pressed="false" disabled>2</button>
+            <button type="button" class="seat" data-seat-id="D3" aria-label="Row D, seat 3, Standard, €12.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="D4" aria-label="Row D, seat 4, Standard, €12.00, available" aria-pressed="false">4</button>
+            <button type="button" class="seat" data-seat-id="D5" aria-label="Row D, seat 5, Standard, €12.00, available" aria-pressed="false">5</button>
+            <button type="button" class="seat" data-seat-id="D6" aria-label="Row D, seat 6, Standard, €12.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="D7" aria-label="Row D, seat 7, Standard, €12.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="D8" aria-label="Row D, seat 8, Standard, €12.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="D9" aria-label="Row D, seat 9, Standard, €12.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="D10" aria-label="Row D, seat 10, Standard, €12.00, available" aria-pressed="false">10</button>
+          </div>
+
+          <div class="seat-row" role="group" aria-label="Row E, Premium">
+            <button type="button" class="seat" data-seat-id="E1" aria-label="Row E, seat 1, Premium, €15.00, available" aria-pressed="false">1</button>
+            <button type="button" class="seat" data-seat-id="E2" aria-label="Row E, seat 2, Premium, €15.00, available" aria-pressed="false">2</button>
+            <button type="button" class="seat" data-seat-id="E3" aria-label="Row E, seat 3, Premium, €15.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="E4" aria-label="Row E, seat 4, Premium, €15.00, available" aria-pressed="false">4</button>
+            <button type="button" class="seat" data-seat-id="E5" aria-label="Row E, seat 5, Premium, €15.00, available" aria-pressed="false">5</button>
+            <button type="button" class="seat" data-seat-id="E6" aria-label="Row E, seat 6, Premium, €15.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="E7" aria-label="Row E, seat 7, Premium, €15.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="E8" aria-label="Row E, seat 8, Premium, €15.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="E9" aria-label="Row E, seat 9, Premium, €15.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="E10" aria-label="Row E, seat 10, Premium, €15.00, sold" aria-pressed="false" disabled>10</button>
+          </div>
+
+          <div class="seat-row" role="group" aria-label="Row F, Premium">
+            <button type="button" class="seat" data-seat-id="F1" aria-label="Row F, seat 1, Premium, €15.00, available" aria-pressed="false">1</button>
+            <button type="button" class="seat" data-seat-id="F2" aria-label="Row F, seat 2, Premium, €15.00, available" aria-pressed="false">2</button>
+            <button type="button" class="seat" data-seat-id="F3" aria-label="Row F, seat 3, Premium, €15.00, available" aria-pressed="false">3</button>
+            <button type="button" class="seat" data-seat-id="F4" aria-label="Row F, seat 4, Premium, €15.00, available" aria-pressed="false">4</button>
+            <button type="button" class="seat" data-seat-id="F5" aria-label="Row F, seat 5, Premium, €15.00, available" aria-pressed="false">5</button>
+            <button type="button" class="seat" data-seat-id="F6" aria-label="Row F, seat 6, Premium, €15.00, available" aria-pressed="false">6</button>
+            <button type="button" class="seat" data-seat-id="F7" aria-label="Row F, seat 7, Premium, €15.00, available" aria-pressed="false">7</button>
+            <button type="button" class="seat" data-seat-id="F8" aria-label="Row F, seat 8, Premium, €15.00, available" aria-pressed="false">8</button>
+            <button type="button" class="seat" data-seat-id="F9" aria-label="Row F, seat 9, Premium, €15.00, available" aria-pressed="false">9</button>
+            <button type="button" class="seat" data-seat-id="F10" aria-label="Row F, seat 10, Premium, €15.00, available" aria-pressed="false">10</button>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="booking-summary-heading">
+        <h2 id="booking-summary-heading">Booking summary</h2>
+        <ul id="selection-errors" role="alert" hidden></ul>
+        <h3>Selected seats</h3>
+        <ul id="selected-seat-list" aria-live="polite">
+          <li>No seats selected.</li>
+        </ul>
+        <p>Total: <output id="total-price" aria-live="polite">€0.00</output></p>
+        <button id="continue-button" type="button">Continue</button>
+      </section>
+
+      <dialog id="checkout-dialog" aria-labelledby="checkout-title" aria-describedby="checkout-description">
+        <form id="checkout-form">
+          <h2 id="checkout-title">Complete your booking</h2>
+          <p id="checkout-description">Enter your name and email address to confirm your seats.</p>
+
+          <ul id="checkout-errors" role="alert" hidden></ul>
+
+          <p>
+            <label for="customer-name">Name</label>
+            <input id="customer-name" name="name" type="text" autocomplete="name" required>
+          </p>
+          <p>
+            <label for="customer-email">Email</label>
+            <input id="customer-email" name="email" type="email" autocomplete="email" required>
+          </p>
+
+          <button id="book-button" type="submit">Book seats</button>
+          <button id="cancel-checkout-button" type="button">Cancel</button>
+        </form>
+      </dialog>
+
+      <p id="booking-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
+    </main>
+  </body>
+</html>
